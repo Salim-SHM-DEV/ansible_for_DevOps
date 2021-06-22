@@ -1,0 +1,28 @@
+---
+- name: uninstall tomcat
+  hosts: all
+  become: true
+  tasks:
+  - name: stop tomcat
+    shell: nohup ./shutdown.sh
+    args:
+      chdir: /opt/apache-tomcat-8.5.68/bin
+
+  - name: Remove tomcat directory.tar.gz
+    file:
+      path: /opt/ansible/apache-tomcat-8.5.68.tar.gz
+      state: absent
+  - name: Remove tomcat directory.tar.gz
+    file:
+      path: /opt/ansible/apache-tomcat-8.5.66.tar.gz
+      state: absent
+
+  - name: Remove tomcat directory
+    file:
+      path: /opt/ansible/apache-tomcat-8.5.68
+      state: absent
+
+  - name: Remove tomcat directory
+    file:
+      path: /opt/ansible/apache-tomcat-8.5.66
+      state: absent
